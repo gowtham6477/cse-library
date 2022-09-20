@@ -126,10 +126,7 @@
 
             fetch("https://department-library-default-rtdb.firebaseio.com/Books.json", requestOptions)
                 .then(response => response.json())
-                .then(result => {
-                    console.log(result)
-                    AddAllItemsToTable(result);
-                })
+                .then(result => AddAllItemsToTable(result))
                 .catch(error => console.log('error', error))
     </script>
     
