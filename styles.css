@@ -106,3 +106,74 @@ section{
     height: 100vh;
     transition: all .5s;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+
+    .sidebar header {
+        font-size: 18px;
+        line-height: 50px;
+    }
+
+    .sidebar a {
+        height: 45px;
+        line-height: 45px;
+        font-size: 16px;
+        padding-left: 15px;
+    }
+
+    .sidebar a i {
+        margin-right: 10px;
+    }
+
+    label #btn, label #cancel {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        font-size: 24px;
+        padding: 8px 10px;
+        z-index: 1001;
+    }
+
+    #check:checked ~ .sidebar {
+        left: 0;
+    }
+
+    #check:checked ~ label #btn {
+        left: 15px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    #check:checked ~ label #cancel {
+        left: 15px;
+    }
+
+    section {
+        height: auto;
+        min-height: 100vh;
+        padding: 20px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+    }
+    
+    .sidebar a {
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        padding-left: 12px;
+    }
+    
+    label #btn, label #cancel {
+        font-size: 20px;
+        padding: 6px 8px;
+    }
+}
