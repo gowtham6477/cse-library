@@ -66,16 +66,18 @@
         <p>DEPARTMENT LIBRARY RESOURCES</p>
         <a href="index.html"><i class="fa-solid fa-house home"></i></a>
         <div class="display__book">
-            <table>
-                <thead>
-                    <th>Serial No</th>
-                    <th>AccNo</th>
-                    <th>Author Name</th>
-                    <th>Book Title</th>
-                    <th>Publisher</th>
-                </thead>
-                <tbody id="tbody1"></tbody>
-            </table>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <th>Serial No</th>
+                        <th>AccNo</th>
+                        <th>Author Name</th>
+                        <th>Book Title</th>
+                        <th>Publisher</th>
+                    </thead>
+                    <tbody id="tbody1"></tbody>
+                </table>
+            </div>
         </div>
         <ul id="list">
 
@@ -96,10 +98,15 @@
                 let td5 = document.createElement("td");
 
                 td1.innerHTML = ++stdNo;
+                td1.setAttribute('data-label', 'Serial No');
                 td2.innerHTML = AccNo;
+                td2.setAttribute('data-label', 'AccNo');
                 td3.innerHTML = AuthorName;
+                td3.setAttribute('data-label', 'Author Name');
                 td4.innerHTML = BookTitle;
+                td4.setAttribute('data-label', 'Book Title');
                 td5.innerHTML = Publisher;
+                td5.setAttribute('data-label', 'Publisher');
 
                 trow.appendChild(td1);
                 trow.appendChild(td2);
