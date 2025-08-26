@@ -78,6 +78,7 @@
                         <th>Author Name</th>
                         <th>Book Title</th>
                         <th>Publisher</th>
+                        <th>Year</th>
                     </thead>
                     <tbody id="tbody1"></tbody>
                 </table>
@@ -92,53 +93,63 @@
     <script type="module">
 
         var stdNo = 0;
-            var tbody = document.getElementById('tbody1');
-            function AddItemToTable(AccNo, AuthorName, BookTitle, Publisher) {
-                let trow = document.createElement("tr");
-                let td1 = document.createElement("td");
-                let td2 = document.createElement("td");
-                let td3 = document.createElement("td");
-                let td4 = document.createElement("td");
-                let td5 = document.createElement("td");
+        var tbody = document.getElementById('tbody1');
+        function AddItemToTable(AccNo, AuthorName, BookTitle, Publisher, Year) {
+            let trow = document.createElement("tr");
+            let td1 = document.createElement("td");
+            let td2 = document.createElement("td");
+            let td3 = document.createElement("td");
+            let td4 = document.createElement("td");
+            let td5 = document.createElement("td");
+            let td6 = document.createElement("td");
 
-                td1.innerHTML = ++stdNo;
-                td1.setAttribute('data-label', 'Serial No');
-                td2.innerHTML = AccNo;
-                td2.setAttribute('data-label', 'AccNo');
-                td3.innerHTML = AuthorName;
-                td3.setAttribute('data-label', 'Author Name');
-                td4.innerHTML = BookTitle;
-                td4.setAttribute('data-label', 'Book Title');
-                td5.innerHTML = Publisher;
-                td5.setAttribute('data-label', 'Publisher');
+            td1.innerHTML = ++stdNo;
+            td1.setAttribute('data-label', 'Serial No');
+            td2.innerHTML = AccNo;
+            td2.setAttribute('data-label', 'AccNo');
+            td3.innerHTML = AuthorName;
+            td3.setAttribute('data-label', 'Author Name');
+            td4.innerHTML = BookTitle;
+            td4.setAttribute('data-label', 'Book Title');
+            td5.innerHTML = Publisher;
+            td5.setAttribute('data-label', 'Publisher');
+            td6.innerHTML = Year || ""; // handle missing year
+            td6.setAttribute('data-label', 'Year');
 
-                trow.appendChild(td1);
-                trow.appendChild(td2);
-                trow.appendChild(td3);
-                trow.appendChild(td4);
-                trow.appendChild(td5);
+            trow.appendChild(td1);
+            trow.appendChild(td2);
+            trow.appendChild(td3);
+            trow.appendChild(td4);
+            trow.appendChild(td5);
+            trow.appendChild(td6);
 
-                tbody.appendChild(trow);
-            };
+            tbody.appendChild(trow);
+        };
 
-            function AddAllItemsToTable(TheBooks) {
-                stdNo = 0;
-                tbody.innerHTML = "";
-                TheBooks.forEach(element => {
-                    AddItemToTable(element.AccNo, element.AuthorName, element.BookTitle, element.Publisher);
-                });
-            };
+        function AddAllItemsToTable(TheBooks) {
+            stdNo = 0;
+            tbody.innerHTML = "";
+            TheBooks.forEach(element => {
+                AddItemToTable(
+                    element.AccNo,
+                    element.AuthorName,
+                    element.BookTitle,
+                    element.Publisher,
+                    element.Year // new field
+                );
+            });
+        };
 
         var urlencoded = new URLSearchParams();
 
-            var requestOptions = {
-                method: 'GET'
-            };
+        var requestOptions = {
+            method: 'GET'
+        };
 
-            fetch("https://department-library-default-rtdb.firebaseio.com/.json", requestOptions)
-                .then(response => response.json())
-                .then(result => AddAllItemsToTable(result))
-                .catch(error => console.log('error', error))
+        fetch("https://department-library-default-rtdb.firebaseio.com/.json", requestOptions)
+            .then(response => response.json())
+            .then(result => AddAllItemsToTable(result))
+            .catch(error => console.log('error', error))
     </script>
     
     
